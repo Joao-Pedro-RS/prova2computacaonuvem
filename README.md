@@ -39,7 +39,7 @@
   d02e1ef51f1e   nginx:alpine   "/docker-entrypoint.…"   8 seconds ago   Up 8 seconds   0.0.0.0:8090->80/tcp, [::]:8090->80/tcp   comunicado
 ```
 
-** Evidência 2 - Página Personalizada**
+**Evidência 2 - Página Personalizada**
 ```
   root@ubuntu:~$ docker exec comunicado sh -c 'echo "<h1>Comunicado</h1><p>Aluno:                    
   Joao Pedro</p>" > /usr/share/nginx/html/index.html'
