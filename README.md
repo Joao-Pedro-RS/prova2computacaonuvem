@@ -46,3 +46,23 @@
   root@ubuntu:~$ curl http://localhost:8090
   <h1>Comunicado</h1><p>Aluno: Joao Pedro</p>
 ```
+
+<ins>**6. Interpretação dos Resultados**</ins>
+
+**Questão 1 - Qual é a diferença entre uma imagem docker e um contêiner em execução?
+  Resposta:** A imagem do Docker funciona como um molde estatico ou uma "planta baixa" que empacota o código e todas as dependências necessarias. O contêiner por sua vez, é a instância ativa rodando a partir dessa imagem atuando como o ambiente em tempo de execução onde a aplicação de fato acontece
+
+**Questão 2 - Qual é a função de um Deployment no Kubernetes?
+  Resposta:** O Deployment atua como um controlador que gerência o ciclo de vida e a estabilidade dos Pods. A principal função dele é garantir que o estado desjado da aplicação seja mantido; por exemplo, se um Pod falha ou cai o Deployment automaticamente cria denovo uma nova instância para suprir a ausência e manter o volume de réplicas estipulado
+
+**Questão 3 - O que aconteceu quando você excluiu um Pod? Por que isso aconteceu?
+  Resposta:** Quando o Pod foi deletado o cluster não deixou a aplicação desguarnecida: ele imediatamente subiu uma nova instância. Esse comportamento automático aconteceu porque o objeto de Deployment estava configurado para manter o limite de 3 réplicas ativas.
+
+**Questão 4 - Qual é a finalidade de um Service no Kubernets?
+  Resposta:** O Service serve como uma camada de abstração de rede dentro do cluster. Ele é o componente responsável por padronizar e tornar possivel a comunicação e o acesso para os Pods, fazendo com que eles possam ser alcançados de forma confiável.
+
+<ins>**7. Conclusão**</ins>
+
+Durante a atividade prática, foi possível compreender a dinamica inicial de criação e customização de ambientes com Docker, incluindo a alteração de arquivos de conteúdo em imagens personalizadas. Alem disso a experiência com o Kubernetes permitiu visualizar na prática conceitos fundamentais de orquestração, como a configuração de Deployments, o gerenciamento de múltiplas réplicas e a resiliência automatizada do cluster frente a falhas ou exclusões de instâncias.
+
+  
