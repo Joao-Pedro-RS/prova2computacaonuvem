@@ -19,7 +19,7 @@
 <ins>**2. Execução da Aplicação com Docker**</ins>
 
 **Evidência 1 - Contêiner em execução**
-  
+```  
   root@ubuntu:~$ docker run -d --name comunicado -p 8090:80 nginx:alpine 
   Unable to find image 'nginx:alpine' locally
   alpine: Pulling from library/nginx
@@ -37,11 +37,12 @@
   root@ubuntu:~$ docker ps
   CONTAINER ID   IMAGE          COMMAND                  CREATED         STATUS         PORTS                                     NAMES
   d02e1ef51f1e   nginx:alpine   "/docker-entrypoint.…"   8 seconds ago   Up 8 seconds   0.0.0.0:8090->80/tcp, [::]:8090->80/tcp   comunicado
+```
 
 ** Evidência 2 - Página Personalizada**
-  
+```
   root@ubuntu:~$ docker exec comunicado sh -c 'echo "<h1>Comunicado</h1><p>Aluno:                    
   Joao Pedro</p>" > /usr/share/nginx/html/index.html'
   root@ubuntu:~$ curl http://localhost:8090
-  <h1>Comunicado</h1><p>Aluno: 
-  Joao Pedro</p>
+  <h1>Comunicado</h1><p>Aluno: Joao Pedro</p>
+```
