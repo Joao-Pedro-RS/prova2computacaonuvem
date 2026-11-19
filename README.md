@@ -47,6 +47,53 @@
   <h1>Comunicado</h1><p>Aluno: Joao Pedro</p>
 ```
 
+<ins>**3. Evolução da Aplicação no Kubernetes**</ins>
+
+**Evidência 3 - Deployment e Pod**
+```
+  root@controlplane:~$ kubectl get pods
+  NAME                          READY   STATUS    RESTARTS   AGE
+  comunicado-84fccb49c5-vdrqn   1/1     Running   0          6m41s
+```
+
+<ins>**4. Escalabilidade e Autorrecuperação**</ins>
+
+**Evidência 4 - Escalabilidade**
+```
+  root@controlplane:~$ kubectl scale deployment comunicado --replicas=3
+  deployment.apps/comunicado scaled
+  
+  root@controlplane:~$ kubectl get pods
+  NAME                          READY   STATUS    RESTARTS   AGE
+  comunicado-84fccb49c5-dhrs9   1/1     Running   0          44s
+  comunicado-84fccb49c5-j9z67   1/1     Running   0          44s
+  comunicado-84fccb49c5-vdrqn   1/1     Running   0          9m3s
+```
+**Evidência 5 - Autorrecuperação**
+```
+  root@controlplane:~$ kubectl delete pod comunicado-84fccb49c5-vdrqn
+  pod "comunicado-84fccb49c5-vdrqn" deleted from default namespace
+  
+  root@controlplane:~$ kubectl get pods
+  NAME                          READY   STATUS    RESTARTS   AGE
+  comunicado-84fccb49c5-dhrs9   1/1     Running   0          119s
+  comunicado-84fccb49c5-j9z67   1/1     Running   0          119s
+  comunicado-84fccb49c5-t57jd   1/1     Running   0          26s
+```
+
+<ins>**5. Disponibilização da Aplicação**</ins>
+
+**Evidência 6 - Service e acesso HTTP**
+```
+  root@controlplane:~$ kubectl get services
+  NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE
+  comunica     ClusterIP   10.97.185.73   <none>        80/TCP    13s
+  kubernetes   ClusterIP   10.96.0.1      <none>        443/TCP   13d
+  
+  root@controlplane:~$ kubectl run teste --image=curlimages/curl --rm it --restart=Never --curl http://comunica  
+  error: unknown flag: --curl
+```
+
 <ins>**6. Interpretação dos Resultados**</ins>
 
 **Questão 1 - Qual é a diferença entre uma imagem docker e um contêiner em execução?
